@@ -1,38 +1,25 @@
-# 📘 Data Structures and Algorithms in C++
+# Practical 1 – Stack Operations
 
-Welcome to my Semester 3 Data Structures and Algorithms repository.
+## Aim
+To implement Stack operations (Push, Pop, Peek and Display) using arrays in C++.
 
-## 👨‍🎓 Student Information
+## Theory
+A Stack is a linear data structure that follows the **LIFO (Last In First Out)** principle. The last element inserted into the stack is the first one removed.
 
-- **Name:** Roshan Sawant
-- **University:** Parul University
-- **Course:** B.Tech Artificial Intelligence & Data Science
-- **Semester:** 3
+## Operations
+- Push
+- Pop
+- Peek
+- Display
 
----
+## Algorithm
+1. Create an array for the stack.
+2. Initialize `top = -1`.
+3. Perform Push, Pop, Peek and Display operations.
+4. Handle Stack Overflow and Stack Underflow conditions.
 
-## 💻 Language
-
+## Language
 - C++
 
----
-
-## 📚 Practicals
-
-- Stack
-- Queue
-- Linked List
-- Searching
-- Sorting
-- Trees
-- Graphs
-
----
-
-## 🎯 Goal
-
-This repository contains all my university practicals along with clean code, explanations, and outputs.
-
----
-
-⭐ Thank you for visiting my repository.
+## Author
+Roshan Sawant
