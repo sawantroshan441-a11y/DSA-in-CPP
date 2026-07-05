@@ -1,54 +1,81 @@
 #include <iostream>
 #include <stack>
+#include <string>
 using namespace std;
 
-// Function to check operator priority
+// Function to return precedence of operators
 int precedence(char op)
 {
-    if(op == '+' || op == '-')
-        return 1;
-    if(op == '*' || op == '/')
+    if (op == '^')
+        return 3;
+    else if (op == '*' || op == '/')
         return 2;
-    return 0;
+    else if (op == '+' || op == '-')
+        return 1;
+    else
+        return 0;
 }
 
 int main()
 {
     string infix, postfix = "";
+    stack<char> s;
 
     cout << "Enter Infix Expression: ";
     cin >> infix;
 
-    stack<char> s;
-
-    for(int i = 0; i < infix.length(); i++)
+    for (int i = 0; i < infix.length(); i++)
     {
         char ch = infix[i];
 
-        // If character is operand
-        if((ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z'))
+        // If operand, add to postfix
+        if (isalnum(ch))
         {
-            postfix = postfix + ch;
+            postfix += ch;
         }
-        else
+
+        // If opening parenthesis, push to stack
+        else if (ch == '(')
         {
-            while(!s.empty() && precedence(s.top()) >= precedence(ch))
+            s.push(ch);
+        }
+
+        // If closing parenthesis
+        else if (ch == ')')
+        {
+            while (!s.empty() && s.top() != '(')
             {
-                postfix = postfix + s.top();
+                postfix += s.top();
                 s.pop();
             }
+
+            if (!s.empty())
+                s.pop(); // Remove '('
+        }
+
+        // If operator
+        else
+        {
+            while (!s.empty() &&
+                   precedence(s.top()) >= precedence(ch) &&
+                   s.top() != '(')
+            {
+                postfix += s.top();
+                s.pop();
+            }
+
             s.push(ch);
         }
     }
 
     // Pop remaining operators
-    while(!s.empty())
+    while (!s.empty())
     {
-        postfix = postfix + s.top();
+        postfix += s.top();
         s.pop();
     }
 
-    cout << "Infix Expression : " << infix << endl;
+    cout << "\nInfix Expression : " << infix << endl;
     cout << "Postfix Expression : " << postfix << endl;
 
     return 0;
